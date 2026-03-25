@@ -9,25 +9,35 @@
         .step { display: none; }
         .step.active { display: block; }
         .progress-bar { transition: width 0.3s ease-in-out; }
+        /* Estilos específicos para impresión */
+        @media print {
+            .print-grid {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem !important;
+            }
+            body { background: white !important; }
+        }
     </style>
 </head>
-<body class="bg-slate-50 min-h-screen font-sans text-slate-900">
+<body class="bg-slate-50 min-h-screen font-sans text-slate-900 print:bg-white">
 
-    <div class="max-w-2xl mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto px-4 py-8 print:py-0 print:max-w-none">
         <!-- Header -->
-        <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-indigo-700">Mi Estrategia Personal</h1>
-            <p id="headerName" class="text-slate-600 mt-2">Cuestionario de Autoevaluación</p>
+        <div class="text-center mb-8 print:mb-6">
+            <h1 class="text-3xl font-bold text-indigo-700 print:text-indigo-900">Mi Estrategia Personal</h1>
+            <p id="headerName" class="text-slate-600 mt-2 font-medium">Cuestionario de Autoevaluación</p>
         </div>
 
-        <!-- Progress -->
-        <div class="w-full bg-slate-200 rounded-full h-2.5 mb-8">
+        <!-- Progress (Oculto al imprimir) -->
+        <div class="w-full bg-slate-200 rounded-full h-2.5 mb-8 print:hidden max-w-2xl mx-auto">
             <div id="progress" class="bg-indigo-600 h-2.5 rounded-full progress-bar" style="width: 20%"></div>
         </div>
 
         <!-- Form Card -->
-        <div class="bg-white rounded-2xl shadow-xl p-8 border border-slate-100">
-            <form id="dofaForm">
+        <div class="bg-white rounded-2xl shadow-xl p-8 border border-slate-100 print:shadow-none print:border-none print:p-0 max-w-2xl mx-auto print:max-w-none">
+            <!-- El formulario se oculta completo al momento de imprimir -->
+            <form id="dofaForm" class="print:hidden">
                 
                 <!-- STEP 1: NOMBRE -->
                 <div class="step active" id="step1">
@@ -56,11 +66,11 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium mb-1">¿Qué habilidad técnica dominas mejor?</label>
-                            <textarea name="f1" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ej: Redacción, trámites legales, atención al cliente..."></textarea>
+                            <textarea name="f1" rows="3" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ej: Redacción, trámites legales, atención al cliente..."></textarea>
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-1">¿Qué recursos tienes listos para usar?</label>
-                            <textarea name="f2" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ej: PC, red de contactos, tiempo disponible..."></textarea>
+                            <textarea name="f2" rows="3" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ej: PC, red de contactos, tiempo disponible..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -76,11 +86,11 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium mb-1">¿Cuál es tu mayor obstáculo personal hoy?</label>
-                            <textarea name="d1" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ej: Falta de capital, desorganización, timidez..."></textarea>
+                            <textarea name="d1" rows="3" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ej: Falta de capital, desorganización, timidez..."></textarea>
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-1">¿Qué conocimiento te hace falta aprender?</label>
-                            <textarea name="d2" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ej: Marketing digital, finanzas, inglés..."></textarea>
+                            <textarea name="d2" rows="3" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ej: Marketing digital, finanzas, inglés..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -96,11 +106,11 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium mb-1">¿Qué necesidad no resuelta ves en tu zona?</label>
-                            <textarea name="o1" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ej: No hay quién haga trámites rápidos, falta educación personalizada..."></textarea>
+                            <textarea name="o1" rows="3" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ej: No hay quién haga trámites rápidos, falta educación personalizada..."></textarea>
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-1">¿Qué tecnología nueva te llama la atención?</label>
-                            <textarea name="o2" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ej: Inteligencia Artificial, redes sociales para ventas..."></textarea>
+                            <textarea name="o2" rows="3" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ej: Inteligencia Artificial, redes sociales para ventas..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -116,11 +126,11 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium mb-1">¿Qué podría salir mal fuera de tu control?</label>
-                            <textarea name="a1" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ej: Crisis económica, mucha competencia barata, falta de luz..."></textarea>
+                            <textarea name="a1" rows="3" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ej: Crisis económica, mucha competencia barata, falta de luz..."></textarea>
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-1">¿Hay algún cambio legal o social que te preocupe?</label>
-                            <textarea name="a2" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ej: Nuevas leyes, cambios en el barrio..."></textarea>
+                            <textarea name="a2" rows="3" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ej: Nuevas leyes, cambios en el barrio..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -133,34 +143,60 @@
                 </div>
             </form>
 
-            <!-- Result Section (Hidden initially) -->
-            <div id="result" class="hidden mt-10 space-y-8 animate-in fade-in duration-500">
-                <hr>
-                <h2 class="text-2xl font-bold text-center text-slate-800">Tu Matriz DOFA Resultante</h2>
+            <!-- Result Section -->
+            <div id="result" class="hidden mt-4 print:mt-0 space-y-8 animate-in fade-in duration-500">
+                <h2 class="text-2xl font-bold text-center text-slate-800 print:text-xl print:mb-4">Matriz DOFA Estratégica</h2>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="p-4 bg-green-50 border-l-4 border-green-500 rounded-r-lg">
-                        <h3 class="font-bold text-green-700 uppercase mb-2 text-sm tracking-widest">Fortalezas</h3>
-                        <ul id="resF" class="text-sm list-disc ml-4 space-y-1"></ul>
+                <!-- Cuadrícula Adaptable: Crece según el contenido -->
+                <div class="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-6 print:gap-4 items-stretch">
+                    <!-- FORTALEZAS -->
+                    <div class="flex flex-col p-5 bg-green-50 border-l-8 border-green-500 rounded-lg shadow-sm print:shadow-none print:border-l-4">
+                        <h3 class="font-bold text-green-700 uppercase mb-3 text-sm tracking-widest flex items-center">
+                            <span class="mr-2 text-lg">💪</span> Fortalezas
+                        </h3>
+                        <ul id="resF" class="text-sm text-slate-700 list-disc ml-5 space-y-2 break-words flex-grow"></ul>
                     </div>
-                    <div class="p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg">
-                        <h3 class="font-bold text-red-700 uppercase mb-2 text-sm tracking-widest">Debilidades</h3>
-                        <ul id="resD" class="text-sm list-disc ml-4 space-y-1"></ul>
+                    
+                    <!-- DEBILIDADES -->
+                    <div class="flex flex-col p-5 bg-red-50 border-l-8 border-red-500 rounded-lg shadow-sm print:shadow-none print:border-l-4">
+                        <h3 class="font-bold text-red-700 uppercase mb-3 text-sm tracking-widest flex items-center">
+                            <span class="mr-2 text-lg">⚠️</span> Debilidades
+                        </h3>
+                        <ul id="resD" class="text-sm text-slate-700 list-disc ml-5 space-y-2 break-words flex-grow"></ul>
                     </div>
-                    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
-                        <h3 class="font-bold text-blue-700 uppercase mb-2 text-sm tracking-widest">Oportunidades</h3>
-                        <ul id="resO" class="text-sm list-disc ml-4 space-y-1"></ul>
+
+                    <!-- OPORTUNIDADES -->
+                    <div class="flex flex-col p-5 bg-blue-50 border-l-8 border-blue-500 rounded-lg shadow-sm print:shadow-none print:border-l-4">
+                        <h3 class="font-bold text-blue-700 uppercase mb-3 text-sm tracking-widest flex items-center">
+                            <span class="mr-2 text-lg">🚀</span> Oportunidades
+                        </h3>
+                        <ul id="resO" class="text-sm text-slate-700 list-disc ml-5 space-y-2 break-words flex-grow"></ul>
                     </div>
-                    <div class="p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded-r-lg">
-                        <h3 class="font-bold text-yellow-700 uppercase mb-2 text-sm tracking-widest">Amenazas</h3>
-                        <ul id="resA" class="text-sm list-disc ml-4 space-y-1"></ul>
+
+                    <!-- AMENAZAS -->
+                    <div class="flex flex-col p-5 bg-yellow-50 border-l-8 border-yellow-500 rounded-lg shadow-sm print:shadow-none print:border-l-4">
+                        <h3 class="font-bold text-yellow-700 uppercase mb-3 text-sm tracking-widest flex items-center">
+                            <span class="mr-2 text-lg">🔥</span> Amenazas
+                        </h3>
+                        <ul id="resA" class="text-sm text-slate-700 list-disc ml-5 space-y-2 break-words flex-grow"></ul>
                     </div>
                 </div>
 
-                <div class="bg-indigo-900 text-white p-6 rounded-xl">
-                    <h3 class="font-bold text-lg mb-2">💡 Siguiente Paso Estratégico</h3>
-                    <p id="strategy" class="text-indigo-100 text-sm leading-relaxed"></p>
-                    <button onclick="window.print()" class="mt-4 text-xs bg-indigo-700 hover:bg-indigo-600 px-4 py-2 rounded">Imprimir Reporte</button>
+                <!-- Estrategia Final -->
+                <div class="bg-indigo-900 text-white p-8 rounded-2xl shadow-xl print:bg-slate-50 print:text-slate-900 print:shadow-none print:border print:border-slate-200">
+                    <h3 class="font-bold text-xl mb-3 flex items-center print:text-indigo-900">
+                        <span class="mr-2 print:hidden">💡</span> Diagnóstico Estratégico
+                    </h3>
+                    <p id="strategy" class="text-indigo-100 text-base leading-relaxed print:text-slate-800 italic"></p>
+                    
+                    <div class="mt-6 flex gap-4 print:hidden">
+                        <button onclick="window.print()" class="bg-white text-indigo-900 font-bold px-6 py-2 rounded-lg hover:bg-indigo-100 transition shadow-md">
+                            Guardar como PDF / Imprimir
+                        </button>
+                        <button onclick="location.reload()" class="text-indigo-200 hover:text-white text-sm underline">
+                            Empezar de nuevo
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -168,7 +204,7 @@
 
     <script>
         let currentStep = 1;
-        const totalSteps = 5; // Aumentado a 5 por el paso del nombre
+        const totalSteps = 5; 
         const form = document.getElementById('dofaForm');
         const nextBtn = document.getElementById('nextBtn');
         const prevBtn = document.getElementById('prevBtn');
@@ -195,16 +231,16 @@
         }
 
         nextBtn.addEventListener('click', () => {
-            // Actualizar el nombre en el encabezado cuando pasamos del paso 1
             if (currentStep === 1) {
                 const name = userNameInput.value.trim() || 'Estratega';
-                headerName.innerText = name;
-                document.title = `Cuestionario DOFA - ${name}`;
+                headerName.innerText = `Plan Estratégico de ${name}`;
+                document.title = `DOFA - ${name}`;
             }
 
             if (currentStep < totalSteps) {
                 currentStep++;
                 updateUI();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         });
 
@@ -212,6 +248,7 @@
             if (currentStep > 1) {
                 currentStep--;
                 updateUI();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         });
 
@@ -220,19 +257,22 @@
             const data = Object.fromEntries(formData.entries());
             const userName = data.userName.trim() || 'Estratega';
 
-            // Fill results
-            document.getElementById('resF').innerHTML = `<li>${data.f1 || 'No especificado'}</li><li>${data.f2 || 'No especificado'}</li>`;
-            document.getElementById('resD').innerHTML = `<li>${data.d1 || 'No especificado'}</li><li>${data.d2 || 'No especificado'}</li>`;
-            document.getElementById('resO').innerHTML = `<li>${data.o1 || 'No especificado'}</li><li>${data.o2 || 'No especificado'}</li>`;
-            document.getElementById('resA').innerHTML = `<li>${data.a1 || 'No especificado'}</li><li>${data.a2 || 'No especificado'}</li>`;
+            // Formatear listas de resultados con saltos de línea para contenido largo
+            const formatContent = (text) => text ? `<li>${text.replace(/\n/g, '<br>')}</li>` : '<li>No definido</li>';
 
-            // Logic for a simple strategy recommendation (Usando el nombre dinámico)
-            document.getElementById('strategy').innerText = `${userName}, basándonos en que tu fortaleza principal es "${data.f1 || 'tu mayor habilidad'}" y has detectado la oportunidad de "${data.o1 || 'esta área'}", tu mejor jugada inmediata es lanzar un servicio piloto que use esa habilidad técnica para resolver ese problema local. No esperes a resolver "${data.d1 || 'tu mayor obstáculo'}", empieza pequeño para validar si el mercado responde.`;
+            document.getElementById('resF').innerHTML = formatContent(data.f1) + formatContent(data.f2);
+            document.getElementById('resD').innerHTML = formatContent(data.d1) + formatContent(data.d2);
+            document.getElementById('resO').innerHTML = formatContent(data.o1) + formatContent(data.o2);
+            document.getElementById('resA').innerHTML = formatContent(data.a1) + formatContent(data.a2);
+
+            // Diagnóstico dinámico
+            document.getElementById('strategy').innerText = `${userName}, analizando tu situación, vemos que tu principal activo es "${data.f1 || 'tu experiencia'}". Para contrarrestar "${data.d1 || 'tus debilidades actuales'}", debes apalancarte en la oportunidad identificada: "${data.o1 || 'el mercado actual'}". El éxito dependerá de cómo utilices tus recursos actuales para mitigar riesgos externos como "${data.a1 || 'los cambios del entorno'}". ¡Es momento de pasar a la acción!`;
 
             document.getElementById('result').classList.remove('hidden');
-            finishBtn.classList.add('hidden');
-            prevBtn.classList.add('hidden');
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            form.classList.add('hidden');
+            document.getElementById('progress').parentElement.classList.add('hidden');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
